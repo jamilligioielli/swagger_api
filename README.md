@@ -22,7 +22,7 @@ docker-compose up
 ## Authors
 
 * **Patrick Luiz** - *Initial work - api-sentimentos*
-* **Jamilli Gioielli** - *Initial work - api-calcequacao*
+* **Jamilli Gioielli** - *Refactor - api-calcequacao*
 
 
 ## Exemplo de template copiado de: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
