@@ -12,7 +12,7 @@ import math
 class CalcEquacaoService():
 
     def __init__(self):
-        logger.debug(mensagens.INICIO_LOAD_SERVICO)
+        logger.debug(mensagens.INICIO_LOAD_CALCULO)
         self.load_servico()
 
     def load_servico(self):
@@ -20,34 +20,34 @@ class CalcEquacaoService():
         Carrega o servico
         """
 
-        logger.debug(mensagens.FIM_LOAD_SERVICO)
+        logger.debug(mensagens.FIM_LOAD_CALCULO)
 
     def executar_calc_equacao(self, index):
         response = {}
 
-        logger.debug(mensagens.INICIO_SERVICO)
+        logger.debug(mensagens.INICIO_CALCULO)
         start_time = time.time()
-        type(index['a'])
-        response_predicts = self.encontrar_raizes((index['a'][0], index['b'][0], index['c'][0]))
+        response_predicts = self.encontrar_raizes(index['a'], index['b'], index['c'])
 
-        logger.debug(mensagens.FIM_SERVICO)
-        logger.debug(f"Fim de todas as predições em {time.time()-start_time}")
+        logger.debug(mensagens.FIM_CALCULO)
+        logger.debug(f"Fim dos cálculos em {time.time()-start_time}")
         response = {
-                    "Resultado da operacao": response_predicts}
+                    "Resultado da operação": response_predicts}
 
         return response
 
     def encontrar_raizes(self, a, b, c):
 
-        logger.debug('Iniciando a solucao...')
+        logger.debug('Iniciando o cálculo...')
         
-        delta = ((b**2) - 4 * a * c)
+        delta = ((math.pow(2,b)) - 4 * a * c)
 
-        sqrt = math.ceil((delta**(1/2)))
-
+        if delta < 0: sqrt = 0
+        else: sqrt = (math.sqrt(delta))
+        
         x1 = (- b + sqrt)/(2* a)
         x2 = (- b - sqrt)/(2* a)
 
-        response = str(str(x1) + str(x2))
+        response = "x1 = " + str(str(x1) + ", " + "x2 = " +  str(x2))
 
         return response

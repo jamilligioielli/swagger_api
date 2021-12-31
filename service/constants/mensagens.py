@@ -1,8 +1,8 @@
 # Mensagens log API
-INICIO_LOAD_SERVICO = "Carregando o servico..."
-FIM_LOAD_SERVICO = "Servico carregado."
-INICIO_SERVICO = "Iniciando a classificacao..."
-FIM_SERVICO = "Fim do serivco."
+INICIO_LOAD_CALCULO = "Carregando a calculadora..."
+FIM_LOAD_CALCULO = "Calculadora carregada."
+INICIO_CALCULO = "Iniciando o cálculo..."
+FIM_CALCULO = "Fim do cálculo."
 
 # Error Business #
 ERROR_GENERIC = "Ocorreu um erro generico"
@@ -15,5 +15,5 @@ ERROR_KEY = 'Chave incorreta'
 
 # Sucess Business #
 SUCESSO_GET = "Classificador OK."
-SUCESSO_PREDICT = "Classificacao realizada com sucesso."
+SUCESSO_PREDICT = "Operações realizadas com sucesso."
 SUCESSO_ENDPOINT = "Endpoints funcionando"

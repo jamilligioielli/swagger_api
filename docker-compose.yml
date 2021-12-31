@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  api-sentimentos:
-    container_name: api-sentimentos
-    image: api-sentimentos
+  api-calcequacao:
+    container_name: api-calcequacao
+    image: api-calcequacao
     restart: unless-stopped
     build:
       context: .
