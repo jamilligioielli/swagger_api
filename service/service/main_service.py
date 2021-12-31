@@ -27,8 +27,8 @@ class CalcEquacaoService():
 
         logger.debug(mensagens.INICIO_SERVICO)
         start_time = time.time()
-
-        response_predicts = self.encontrar_raizes((index['a'], index['b'], index['c']))
+        type(index['a'])
+        response_predicts = self.encontrar_raizes((index['a'][0], index['b'][0], index['c'][0]))
 
         logger.debug(mensagens.FIM_SERVICO)
         logger.debug(f"Fim de todas as predições em {time.time()-start_time}")
@@ -40,20 +40,14 @@ class CalcEquacaoService():
     def encontrar_raizes(self, a, b, c):
 
         logger.debug('Iniciando a solucao...')
-        a = a[0]
-        b = b[0]
-        c = c[0]
+        
+        delta = ((b**2) - 4 * a * c)
 
-        delta = (b**2 - 4 * a * c)
+        sqrt = math.ceil((delta**(1/2)))
 
-        sqrt = delta**(1/2)
+        x1 = (- b + sqrt)/(2* a)
+        x2 = (- b - sqrt)/(2* a)
 
-        x1 = (- b + sqrt/2* a)
-        x2 = (- b - sqrt/2* a)
-
-        response = int(str(x1) + ',' + str(x2))
-        # response = a + b + c
-
-        print(response)
+        response = str(str(x1) + str(x2))
 
         return response
