@@ -4,66 +4,56 @@ from loguru import logger
 from service.constants import mensagens
 import pandas as pd
 import numpy as np
+import math
 
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+# from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
-class SentimentosService():
+class CalcEquacaoService():
 
     def __init__(self):
-        logger.debug(mensagens.INICIO_LOAD_MODEL)
-        self.load_model()
+        logger.debug(mensagens.INICIO_LOAD_SERVICO)
+        self.load_servico()
 
-    def load_model(self):
+    def load_servico(self):
         """"
-        Carrega o modelo VADER a ser usado
+        Carrega o servico
         """
 
-        self.model = SentimentIntensityAnalyzer()
+        logger.debug(mensagens.FIM_LOAD_SERVICO)
 
-        logger.debug(mensagens.FIM_LOAD_MODEL)
-
-    def executar_rest(self, texts):
+    def executar_calc_equacao(self, index):
         response = {}
 
-        logger.debug(mensagens.INICIO_PREDICT)
+        logger.debug(mensagens.INICIO_SERVICO)
         start_time = time.time()
 
-        response_predicts = self.buscar_predicao(texts['textoMensagem'])
+        response_predicts = self.encontrar_raizes((index['a'], index['b'], index['c']))
 
-        logger.debug(mensagens.FIM_PREDICT)
+        logger.debug(mensagens.FIM_SERVICO)
         logger.debug(f"Fim de todas as predições em {time.time()-start_time}")
-
-        df_response = pd.DataFrame(texts, columns=['textoMensagem'])
-        df_response['predict'] = response_predicts
-
-        df_response = df_response.drop(columns=['textoMensagem'])
-
         response = {
-                     "listaClassificacoes": json.loads(df_response.to_json(
-                                                                            orient='records', force_ascii=False))}
+                    "Resultado da operacao": response_predicts}
 
         return response
 
-    def buscar_predicao(self, texts):
-        """
-        Pega o modelo carregado e aplica em texts
-        """
-        logger.debug('Iniciando o predict...')
+    def encontrar_raizes(self, a, b, c):
 
-        response = []
+        logger.debug('Iniciando a solucao...')
+        a = a[0]
+        b = b[0]
+        c = c[0]
 
-        for text in texts:
-            sentiment_dict = self.model.polarity_scores(text)
-        
-            # decide sentiment as positive, negative and neutral
-            if sentiment_dict['compound'] >= 0.05:
-                response.append("Positive")
-        
-            elif sentiment_dict['compound'] <= - 0.05:
-                response.append("Negative")
-        
-            else:
-                response.append("Neutral")
+        delta = (b**2 - 4 * a * c)
+
+        sqrt = delta**(1/2)
+
+        x1 = (- b + sqrt/2* a)
+        x2 = (- b - sqrt/2* a)
+
+        response = int(str(x1) + ',' + str(x2))
+        # response = a + b + c
+
+        print(response)
 
         return response
