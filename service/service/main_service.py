@@ -42,12 +42,12 @@ class CalcEquacaoService():
         
         delta = ((math.pow(2,b)) - 4 * a * c)
 
-        if delta < 0: sqrt = 0
-        else: sqrt = (math.sqrt(delta))
-        
-        x1 = (- b + sqrt)/(2* a)
-        x2 = (- b - sqrt)/(2* a)
-
-        response = "x1 = " + str(str(x1) + ", " + "x2 = " +  str(x2))
+        if delta < 0: 
+            response = "As raízes nao existem para os números reais"
+        else: 
+            sqrt = (math.sqrt(delta))
+            x1 = (- b + sqrt)/(2* a)
+            x2 = (- b - sqrt)/(2* a)
+            response = "x1 = " + str(str(x1) + ", " + "x2 = " +  str(x2))
 
         return response
